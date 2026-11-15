@@ -1,12 +1,12 @@
-// The upstream wires the baseline lacked: Anthropic and Gemini provider requests, buffered
-// answer extraction for all three provider wires, and the client-wire renderers.
+// The upstream wires: Anthropic and Gemini provider requests, buffered answer extraction
+// for all three provider wires, and the client-wire renderers.
 //
-// Everything is buffered: a provider's answer (JSON or SSE) is read whole, reduced to its text
-// and usage counts, and re-rendered in the client's wire. That keeps every conversion a pure
-// function of the request and the provider's answer, which is what a replayed trial requires.
-// Local practice (kit trials 0-2): 20 of 20 valid, score 99 on each - quality 99, served 100,
-// wire 100, failover 100, catalog 100; the missing quality point is a scheduled refusal on a
-// request's best provider, which the quality bound deliberately ignores.
+// Everything is buffered: a provider's answer (JSON or SSE) is read whole, reduced to its
+// text and usage counts, and re-rendered in the client's wire. That keeps every conversion
+// a pure function of the request and the provider's answer, which is what a replayed trial
+// requires. Local practice (kit trials 0-2): 20 of 20 valid, score 99 on each - quality 99,
+// served 100, wire 100, failover 100, catalog 100; the missing quality point is a scheduled
+// refusal on a request's best provider, which the quality bound deliberately ignores.
 
 import { isRecord, type Json } from './providers.ts';
 import { sseEvent } from './wire.ts';
